@@ -1,0 +1,13 @@
+db:
+  image: mysql
+  env_file: .env
+web:
+  build: .
+  env_file: .env
+  command: gunicorn app:app -b 0.0.0.0:8000
+  volumes:
+    - .:/code
+  ports:
+    - "80:8000"
+  links:
+    - db
