@@ -3,7 +3,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-db = SQLAlchemy(app)
 
 db_user = os.environ.get("MYSQL_USER", "")
 db_pass = os.environ.get("MYSQL_PASSWORD", "")
@@ -12,7 +11,9 @@ db_uri = "mysql+mysqldb://{user}:{passwd}@db/{name}".format(
     user=db_user, passwd=db_pass, name=db_name,
 )
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
