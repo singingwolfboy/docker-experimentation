@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 db_user = os.environ.get("MYSQL_USER", "")
 db_pass = os.environ.get("MYSQL_PASSWORD", "")
-db_name = os.environ.get("MYSQL_DB", "")
+db_name = os.environ.get("MYSQL_DATABASE", "")
 db_uri = "mysql+mysqldb://{user}:{passwd}@db/{name}".format(
     user=db_user, passwd=db_pass, name=db_name,
 )
